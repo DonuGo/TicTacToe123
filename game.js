@@ -315,7 +315,7 @@ function AIact()
                 else
                     next += 1000000000;
 
-            if (winSet[0].has(next)) {
+            if (winSet[startFlag].has(next)) {
                 win.push(index);
             } else if (tieSet.has(next)) {
                 tie.push(index);
