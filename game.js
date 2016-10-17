@@ -378,8 +378,8 @@ function onClick(e)
     if (checkFinish(currentGame)) {
         reset();
         if (startFlag) {
-            act(AIact());
             startFlag = 0;
+            act(AIact());
         } else {
             startFlag = 1;
         }
