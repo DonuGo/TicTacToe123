@@ -301,6 +301,7 @@ function AIact()
 {
     var win = [];
     var tie = [];
+    var loseI = [];
     var lose = [];
     if (number > 7)
         number = 7;
@@ -314,7 +315,7 @@ function AIact()
                     next -= 1000000000;
                 else
                     next += 1000000000;
-
+            var next2 = add(currentGame, index, number - 1);
             if (winSet[startFlag].has(next)) {
                 win.push(index);
             } else if (tieSet.has(next)) {
@@ -322,17 +323,19 @@ function AIact()
             } else {
                 lose.push(index);
             }
+            if (checkFinish(next2)) {
+                loseI.push(index);
+            }
         }
     }
     if (win.length > 0) {
         target = win[Math.floor(Math.random()*win.length)];
-        console.log("find win: " + target);
     } else if (tie.length > 0) {
         target = tie[Math.floor(Math.random()*tie.length)];
-        console.log("find tie: " + target);
+    } else if (loseI.length > 0) {
+        target = loseI[Math.floor(Math.random()*loseI.length)];
     } else {
         target = lose[Math.floor(Math.random()*lose.length)];
-        console.log("find lose: " + target);
     }
     return target;
 }
