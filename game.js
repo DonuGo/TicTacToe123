@@ -372,12 +372,17 @@ function act(index)
     document.getElementById("Max").innerHTML = "Max score: " + getCookie();
     document.getElementById("Now").innerHTML = "Now score: " + currentStep;
 }
-
+var startFlag = 0;
 function onClick(e)
 {
     if (checkFinish(currentGame)) {
         reset();
-        act(AIact());
+        if (startFlag) {
+            act(AIact());
+            startFlag = 0;
+        } else {
+            startFlag = 1;
+        }
         return ;
     }
 
