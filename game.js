@@ -402,8 +402,10 @@ function onClick(e)
 
     currentStep++;
     act(index);
-    index = AIact();
-    act(index);
+    if (!checkFinish(currentGame)) {
+        index = AIact();
+        act(index);
+    }
 }
 
 function setCookie(score)
