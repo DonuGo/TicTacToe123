@@ -242,7 +242,6 @@ function drawMark(index, mark, depth)
 {
     var c = document.getElementById("board");
     var ctx = c.getContext("2d");
-
     ctx.beginPath();
     ctx.lineWidth=10;
     var width  = c.width;
@@ -251,6 +250,10 @@ function drawMark(index, mark, depth)
     var x = (index % 3) * (width / 3) + (width / 6);
     var y = Math.floor(index / 3) * (height / 3) + (height / 6);
 
+    var assist = document.getElementById('assist');
+    if (!assist.checked) {
+        depth = 6;
+    }
     if (mark == "O") {
         ctx.arc(x, y, width / 6 * 0.8 , 0, 2 * Math.PI);
         ctx.strokeStyle = '#0000ff';
@@ -378,6 +381,7 @@ function act(index)
 var startFlag = 0;
 function onClick(e)
 {
+
     if (checkFinish(currentGame)) {
         reset();
         if (startFlag) {
