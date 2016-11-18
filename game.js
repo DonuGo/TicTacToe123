@@ -15,6 +15,12 @@ function add(game, index, number) {
                 ret -= powerof10[i];
             }
         }
+    } else if (number == 8) {
+        for (var i = 0; i < 9; i++) {
+            if ((Math.floor(ret / powerof10[i]) % 10) == 2) {
+                ret -= 2 * powerof10[i];
+            }
+        }
 
     }
     return ret;
@@ -37,12 +43,12 @@ function checkFinish(game)
     for (var i = 0; i < 9; i++) {
         var tmp = Math.floor(game / powerof10[i]) % 10;
         if (tmp) {
-		if (tmp % 2) {
-            		data.push(1);
-		} else {
-			data.push(-1);
+            if (tmp % 2) {
+                data.push(1);
+            } else {
+                data.push(-1);
 
-		}
+            }
         } else
             data.push(0);
     }
@@ -318,7 +324,6 @@ function AIact()
                     next -= 1000000000;
                 else
                     next += 1000000000;
-            var next2 = add(currentGame, index, number - 1);
             if (winSet[startFlag].has(next)) {
                 win.push(index);
             } else if (tieSet.has(next)) {
@@ -326,6 +331,7 @@ function AIact()
             } else {
                 lose.push(index);
             }
+            var next2 = add(currentGame, index, number + 1);
             if (checkFinish(next2)) {
                 loseI.push(index);
             }
@@ -365,7 +371,6 @@ function act(index)
         else
             currentGame += 1000000000;
 
-    console.log(number + " " + currentGame);
     number++;
     reDraw(currentGame);
     if (checkFinish(currentGame)) {
